@@ -77,8 +77,7 @@ class Catalog
     uid = +new Date + "" + Math.floor(Math.random() * 100000)
     tmpfile = "#{@getFixturesDir()}/node-replay.#{uid}"
     pathname = "#{@getFixturesDir()}/#{host.replace(":", "-")}"
-    logger = request.replay.logger
-    logger.log "Creating #{pathname}"
+    debug "Creating #{pathname}"
     mkdirp pathname, (error)->
       return callback error if error
       filename = "#{pathname}/#{uid}"

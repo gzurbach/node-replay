@@ -74,6 +74,10 @@ class Replay extends EventEmitter
   use: (proxy)->
     @chain.prepend(proxy)
 
+  # Alias allow to passThrough for backward compatibility
+  allow: (hosts...)->
+    @passThrough(hosts...)
+
   # Pass through all requests to these hosts
   passThrough: (hosts...)->
     @reset(hosts...)

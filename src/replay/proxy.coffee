@@ -102,6 +102,15 @@ class ProxyRequest extends HTTP.ClientRequest
     if data
       @body ||= []
       @body.push [data, encoding]
+
+    # Sometimes end is called twice
+    # We must exit this method early, otherwise nasty things can happen
+    if @ended
+      if (callback)
+        return setImmediate(callback)
+      else
+        return
+
     @ended = true
 
     if (callback)

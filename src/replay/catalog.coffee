@@ -12,21 +12,6 @@ existsSync = File.existsSync || Path.existsSync
 
 existsSync = File.existsSync || Path.existsSync
 
-
-mkdir = (pathname, callback)->
-  exists pathname, (found)->
-    if found
-      callback null
-      return
-    parent = Path.dirname(pathname)
-    exists parent, (found)->
-      if found
-        File.mkdir pathname, callback
-      else
-        mkdir parent, ->
-          File.mkdir pathname, callback
-
-
 class Catalog
   constructor: (@settings)->
     # We use this to cache host/host:port mapped to array of matchers.
